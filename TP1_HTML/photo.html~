@@ -1,1 +1,16 @@
-<img src="Emperor.jpg">
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>GodEmperor</title>
+  </head>
+  
+  <body>
+    
+    <img src="Emperor.jpg"
+	 title="The God Emperor">
+    <h1>Picture of the God Emperor</h1>
+    
+  </body>
+  
+</html>

@@ -4,33 +4,45 @@
   <head>
     <title>GodEmperor</title>
 
-    <script>
-     
-      let liElt = document.getElementById("picture");
-      liElt.addEventListener("click", changePicture);
-
+    <script> 
+      var image;
+      
+      function init() 
+      {
+        image = document.getElementById("picture");
+        image.addEventListener("click", changePicture);
+      }
+    
+    
       function changePicture()
       {
-        if(liElt.getAttribute("src")=="Emperor.jpg")
+        alert("Click détecté");
+
+        if(image.src=="Emperor.jpg")
         {
-          liElt.setAttribute("src","Heresy.jpg");
+          image.src = "Heresy.jpg"
         }
         else
         {
-          liElt.setAttribute("src","Emperor.jpg");
+          image.src = "Emperor.jpg"
         }
       }
 
+      window.addEventListener("load", init);
     </script>
+
   </head>
 
 
   
   <body>
+
     <h1>Picture of the God Emperor</h1>
+
     <img id="picture"
     src="Emperor.jpg"
-	 title="The God Emperor">
+	 title="The God Emperor"
+   >
 
     <footer>
       <a href="./index.html"> Accueil HTML</a>

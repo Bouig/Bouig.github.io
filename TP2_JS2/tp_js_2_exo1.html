@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <script type="text/javascript">
+            //Déclaration des variables globales
+            var can;
+            var ctxt;
+            var i;
+            var intervalID = setInterval(compteur, 1000);
+            
+            //Fonctions
+            function init() 
+            {
+                can = document.getElementById("canvas");
+                ctxt = can.getContext("2d");
+                i=10;
+                ctxt.font = 'bold 32px serif';
+                ctxt.fillText(i, 50, 90);
+            }
+            function compteur() 
+            {
+                if(i>0)
+                {
+                    i=i-1;
+                    ctxt.clearRect(0,0,can.width,can.height)
+                    ctxt.fillText(i, 50, 90);
+                }
+                else
+                {
+                    clearInterval(intervalID);
+                }
+            }
+
+            //EventListener
+            window.addEventListener("load", init);
+
+        </script>
+    </head>
+
+
+
+    <body>
+        <h1>
+            Compte à rebour de 10
+        </h1>
+        <canvas id="canvas" width="300" height="200">
+
+        </canvas>
+    </body>
+
+</html>

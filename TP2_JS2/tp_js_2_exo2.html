@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <script type="text/javascript">
+            var can;
+            var ctxt;
+            var intervalID;
+            var x;
+            var y = 200;
+            var sens;
+
+            
+            function init() 
+            {
+                can = document.getElementById("canvas");
+                ctxt = can.getContext("2d");
+                ctxt.fillStyle = 'red';
+                ctxt.fillRect(0, y, 50, 50);
+                x = 0;
+                sens = "droite";
+                intervalID = setInterval(mouvement, 100);
+            }
+            function mouvement()
+            {
+                console.log(sens);
+                if(sens=="droite")
+                {
+                    if(x<550)
+                    {
+                        sens = "droite";
+                        ctxt.clearRect(x,y,50,50);
+                        x = x+10;
+                        ctxt.fillRect(x, y, 50, 50);
+                    }
+                    else
+                    {
+                        sens = "gauche";
+                        ctxt.clearRect(x,y,50,50);
+                        x = x-10;
+                        ctxt.fillRect(x, y, 50, 50);
+                    }
+                }
+                else
+                {
+                    if(x>0)
+                    {
+                        sens = "gauche";
+                        ctxt.clearRect(x,y,50,50);
+                        x = x-10;
+                        ctxt.fillRect(x, y, 50, 50);
+                    }
+                    else
+                    {
+                        sens = "droite";
+                        ctxt.clearRect(x,y,50,50);
+                        x = x+10;
+                        ctxt.fillRect(x, y, 50, 50);
+                    }
+                }
+            }
+ 
+
+            window.addEventListener("load", init);
+
+        </script>
+    </head>
+
+
+
+    <body>
+        <h1>
+            Let's Move
+        </h1>
+        
+        <canvas id="canvas" width="600" height="600"></canvas>
+    </body>
+
+</html>

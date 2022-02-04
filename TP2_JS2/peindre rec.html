@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <script type="text/javascript">
+            var can;
+            var ctxt;
+
+
+            
+            function init() 
+            {
+                can = document.getElementById("canvas");
+                ctxt = can.getContext("2d");
+                ctxt.fillStyle = "red";
+                ctxt.fillRect(0, 0, 50, 50);
+            }
+ 
+
+            window.addEventListener("load", init);
+
+        </script>
+    </head>
+
+
+
+    <body>
+        <h1>
+            Let's paint 
+        </h1>
+        
+        <canvas id="canvas" width="600" height="600"></canvas>
+    </body>
+
+</html>

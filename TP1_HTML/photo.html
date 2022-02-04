@@ -3,12 +3,33 @@
 
   <head>
     <title>GodEmperor</title>
+
+    <script>
+     
+      let liElt = document.getElementById("picture");
+      liElt.addEventListener("click", changePicture);
+
+      function changePicture()
+      {
+        if(liElt.getAttribute("src")=="Emperor.jpg")
+        {
+          liElt.setAttribute("src","Heresy.jpg");
+        }
+        else
+        {
+          liElt.setAttribute("src","Emperor.jpg");
+        }
+      }
+
+    </script>
   </head>
+
+
   
   <body>
-    
     <h1>Picture of the God Emperor</h1>
-    <img src="Emperor.jpg"
+    <img id="picture"
+    src="Emperor.jpg"
 	 title="The God Emperor">
 
     <footer>

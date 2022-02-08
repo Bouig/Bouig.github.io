@@ -6,7 +6,9 @@
             /**Les variables*/
             var ctxt;
             var max;
-            var w;
+            var w = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
+            var i;
+            var colour = ["red", "green", "yellow", "blue", "purple", "brown", "white", "black", "orange", "pink"];
             
        
             /**Les fonctions*/
@@ -27,20 +29,23 @@
                 /**On trace le cercle*/
                 ctxt.clearRect(0, 0, 2000,2000);
                 ctxt.beginPath();
-                ctxt.arc(x, y, 2, 0, 2*Math.PI);
+                ctxt.arc(x, y, 5, 0, 2*Math.PI);
                 ctxt.fill();
                 ctxt.stroke();
             }
             function startWorker()
             {
-                if(typeof(w) == "undefined")
+                for (i=0; i<w.length; i++)
                 {
-                    w = new Worker("Worker.js");
-                }
-                w.onmessage = function(event)
-                {
-                    var reponse = event.data;
-                    drawCircle(reponse);
+                    if(typeof(w[i]) == "undefined")
+                    {
+                        w[i] = new Worker("Worker.js");
+                    }
+                    w[i].onmessage = function(event)
+                    {
+                        var reponse = event.data;
+                        drawCircle(reponse);
+                    }
                 }
             }
 

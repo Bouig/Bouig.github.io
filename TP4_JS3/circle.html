@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <script type="text/javascript">
+            /**Les variables*/
+            const xhr = new XMLHttpRequest();
+            var intervalID;
+            var ctxt;
+            var max;
+       
+            /**Les fonctions*/
+            function init() 
+            {
+                var can = document.getElementById("sketch");
+                ctxt = can.getContext("2d");
+                ctxt.canvas.width = window.innerWidth;
+                ctxt.canvas.height = window.innerHeight;
+                
+                max = Math.min(ctxt.canvas.width, ctxt.canvas.height)-100;
+
+                intervalID = setInterval(getCoordinates, max, 1000);
+            }
+
+            function getCoordinates(max)
+            {
+                /**On récupère les coordonnées du cercle*/
+                var url = "https://stwom.herokuapp.com/"+max;
+                xhr.open("GET",url);
+                xhr.send();
+            }
+
+            function drawCircle(response)
+            {
+                /**INITIALISATION*/
+                var x = response.x;
+                var y = response.y;
+
+                /**On trace le cercle*/
+                ctxt.beginPath();
+                ctxt.arc(x, y, 50, 0, 2*Math.PI);
+                ctxt.stroke();
+            }
+       
+            /**Les événements*/
+            xhr.onreadystatechange = function()
+            {
+                if(this.readyState == this.DONE && this.status == 200)
+                {
+                    var response = JSON.parse(this.responseText);
+                    drawCircle(response);
+                }
+
+            };
+            window.addEventListener("load",init);
+       
+       </script>
+
+    </head>
+    <body>
+        <h1>
+            The Circle
+        </h1>
+        <canvas id="sketch"></canvas>
+    </body>
+</html>

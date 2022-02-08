@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <script type="text/javascript">
+            /**Les variables*/
+            var ctxt;
+            var max;
+            var w;
+            
+       
+            /**Les fonctions*/
+            function init() 
+            {
+                let can = document.getElementById("Extra");
+                ctxt = can.getContext("2d");
+                ctxt.fillStyle = "red";
+
+                startWorker();
+            }
+            function drawCircle(response)
+            {
+                /**INITIALISATION*/
+                let x = response.x;
+                let y = response.y;
+
+                /**On trace le cercle*/
+                ctxt.beginPath();
+                ctxt.arc(x, y, 50, 0, 2*Math.PI);
+                ctxt.fill();
+                ctxt.stroke();
+            }
+            function startWorker()
+            {
+                if(typeof(w) == "undefined")
+                {
+                    w = new Worker("Worker.js");
+                }
+                w.onmessage = function(event)
+                {
+                    var reponse = event.data;
+                    drawCircle(reponse);
+                }
+            }
+
+            /**événements*/
+            window.addEventListener("load",init);
+
+       </script>
+
+    </head>
+    <body>
+        <h1>
+            Trypophobie
+        </h1>
+        <canvas id="Extra" width="600" height="600"></canvas>
+
+    </body>
+</html>

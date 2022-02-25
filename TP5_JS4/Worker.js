@@ -20,6 +20,6 @@
      if(this.readyState == this.DONE && this.status == 200)
      {
          var response = JSON.parse(this.responseText);
-         this.postMessage(response); 
+         postMessage(response); 
      }
  };

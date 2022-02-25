@@ -5,21 +5,20 @@
         <script type="text/javascript">
             /**Les variables*/
             var ctxt;
-            var max;
-            var w = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
-            var i;
-            var colour = ["red", "green", "yellow", "blue", "purple", "brown", "white", "black", "orange", "pink"];
+            var w;
+            var colour = ["red"];
             
        
             /**Les fonctions*/
             function init() 
             {
+                w = new Worker("Worker.js");
+                console.log("Création d'un nouveau worker");
                 let can = document.getElementById("Extra");
                 ctxt = can.getContext("2d");
                 ctxt.fillStyle = "red";
-
-                startWorker();
             }
+
             function drawCircle(response)
             {
                 /**INITIALISATION*/
@@ -33,24 +32,15 @@
                 ctxt.fill();
                 ctxt.stroke();
             }
-            function startWorker()
-            {
-                for (i=0; i<w.length; i++)
-                {
-                    if(typeof(w[i]) == "undefined")
-                    {
-                        w[i] = new Worker("Worker.js");
-                    }
-                    w[i].onmessage = function(event)
-                    {
-                        var reponse = event.data;
-                        drawCircle(reponse);
-                    }
-                }
-            }
 
             /**événements*/
             window.addEventListener("load",init);
+            w.onmessage = function(e)
+            {
+                window.alert("Réception d'un message");
+                var reponse = e.data;
+                drawCircle(reponse);
+            }
 
        </script>
 

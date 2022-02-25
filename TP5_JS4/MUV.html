@@ -44,6 +44,8 @@
                     w[i].onmessage = function(event)
                     {
                         var reponse = event.data;
+                        window.alert(reponse);
+
                         drawCircle(reponse);
                     }
                 }

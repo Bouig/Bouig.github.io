@@ -23,6 +23,7 @@
             function drawCircle(response, i)
             {
                 /**INITIALISATION*/
+                console.log("i vaut : "+i);
                 ctxt.fillStyle = colour[i];
                 let x = response.x;
                 let y = response.y;
@@ -51,7 +52,8 @@
                         w[i].onmessage = function(event)
                         {
                             var reponse = event.data;
-                            drawCircle(reponse, i);
+                            var number = i;
+                            drawCircle(reponse, number);
                         }
                     }
                     

@@ -49,14 +49,12 @@
                         w[i] = new Worker("Worker.js");
                         console.log("Création du Worker "+i);
 
-                        (function (){
-                            const param =i;/**Permet de fixer le context*/
-                            w[param].onmessage = function(event)
-                            {
-                                var reponse = event.data;
-                                drawCircle(reponse, colour[param]);
-                            }
-                        })();
+                        let param =i;/**Permet de fixer le context*/
+                        w[param].onmessage = function(event)
+                        {
+                            var reponse = event.data;
+                            drawCircle(reponse, colour[param]);
+                        }
                     }
                     
                 }

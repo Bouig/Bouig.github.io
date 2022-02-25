@@ -36,8 +36,8 @@
             window.addEventListener("load",init);
             w.onmessage = function(e)
             {
-                window.alert("Réception d'un message");
                 var reponse = e.data;
+                console.alert("Réception d'un message avec reponse = " + reponse);
                 drawCircle(reponse);
             }
 

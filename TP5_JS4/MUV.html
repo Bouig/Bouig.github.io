@@ -9,30 +9,36 @@
             var w = [undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined];
             var i;
             var colour = ["red", "green", "yellow", "blue", "purple", "brown", "white", "black", "orange", "pink"];
-            
+            /**var intervalID = setInterval(eraseCircles,1000);*/
        
             /**Les fonctions*/
             function init() 
             {
                 let can = document.getElementById("Extra");
                 ctxt = can.getContext("2d");
-                ctxt.fillStyle = "red";
 
                 startWorker();
             }
-            function drawCircle(response)
+
+            function drawCircle(response, i)
             {
                 /**INITIALISATION*/
+                ctxt.fillStyle = colour[i];
                 let x = response.x;
                 let y = response.y;
 
                 /**On trace le cercle*/
-                ctxt.clearRect(0, 0, 2000,2000);
                 ctxt.beginPath();
                 ctxt.arc(x, y, 5, 0, 2*Math.PI);
                 ctxt.fill();
                 ctxt.stroke();
             }
+
+            /**function eraseCircles()
+            {
+                ctxt.clearRect(0, 0, 2000,2000);
+            }*/
+
             function startWorker()
             {
                 for (i=0; i<w.length; i++)
@@ -40,19 +46,23 @@
                     if(typeof(w[i]) == "undefined")
                     {
                         w[i] = new Worker("Worker.js");
-                    }
-                    w[i].onmessage = function(event)
-                    {
-                        var reponse = event.data;
-                        window.alert(reponse);
-
-                        drawCircle(reponse);
+                        console.log("Création du Worker "+i);
                     }
                 }
             }
 
             /**événements*/
             window.addEventListener("load",init);
+            for(i=0; i<w.length; i++)
+            {
+                w[i].onmessage = function(event)
+                    {
+                        var reponse = event.data;
+                        window.alert(reponse);
+
+                        drawCircle(reponse, i);
+                    }
+            }
 
        </script>
 

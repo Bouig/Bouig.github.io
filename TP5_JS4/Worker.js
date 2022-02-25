@@ -9,7 +9,6 @@
  function getCoordinates()
  {
      /**On récupère les coordonnées du cercle*/
-     window.alert("On récupère les coordonnées du cercle");
      let url = "https://stwom.herokuapp.com/"+max;
      xhr.open("GET",url);
      xhr.send();
@@ -22,6 +21,5 @@
      {
          var response = JSON.parse(this.responseText);
          this.postMessage(response); 
-         window.alert("Message envoyé par worker");
      }
  };

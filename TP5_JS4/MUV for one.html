@@ -5,14 +5,13 @@
         <script type="text/javascript">
             /**Les variables*/
             var ctxt;
-            var w;
+            var w = new Worker("Worker.js");
             var colour = ["red"];
             
        
             /**Les fonctions*/
             function init() 
             {
-                w = new Worker("Worker.js");
                 console.log("Création d'un nouveau worker");
                 let can = document.getElementById("Extra");
                 ctxt = can.getContext("2d");

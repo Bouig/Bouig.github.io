@@ -47,23 +47,19 @@
                     {
                         w[i] = new Worker("Worker.js");
                         console.log("Création du Worker "+i);
+
+                        w[i].onmessage = function(event)
+                        {
+                            var reponse = event.data;
+                            drawCircle(reponse, i);
+                        }
                     }
+                    
                 }
             }
 
             /**événements*/
             window.addEventListener("load",init);
-            for(i=0; i<w.length; i++)
-            {
-                w[i].onmessage = function(event)
-                    {
-                        var reponse = event.data;
-                        window.alert(reponse);
-
-                        drawCircle(reponse, i);
-                    }
-            }
-
        </script>
 
     </head>

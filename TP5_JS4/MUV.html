@@ -20,11 +20,11 @@
                 startWorker();
             }
 
-            function drawCircle(response, i)
+            function drawCircle(response, c)
             {
                 /**INITIALISATION*/
-                console.log("i vaut : "+i);
-                ctxt.fillStyle = colour[i];
+                console.log("La couleur vaut : "+c);
+                ctxt.fillStyle = c;
                 let x = response.x;
                 let y = response.y;
 
@@ -52,8 +52,7 @@
                         w[i].onmessage = function(event)
                         {
                             var reponse = event.data;
-                            var number = i;
-                            drawCircle(reponse, number);
+                            drawCircle(reponse, colour[i]);
                         }
                     }
                     
